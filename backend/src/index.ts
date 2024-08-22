@@ -39,6 +39,7 @@ app.get("/words", async (req, res) => {
     const words = await prisma.word.findMany({ where: query });
     res.status(200).send(words);
   } catch (error) {
+    console.error(error);
     res.status(500).send({ error: "Internal server error" });
   }
 });

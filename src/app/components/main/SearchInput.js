@@ -2,17 +2,25 @@
 
 import { useState, useEffect } from 'react';
 
+// fetch data from API
+const fetchWords = async (query) => {
+  const response = await fetch(`http://localhost:3333/words?search=${query}`);
+  return await response.json();
+}
+
 const SearchInput = ({ onSelect }) => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
+    const handler = setTimeout(async () => {
       if (query.trim() === '') {
         setSuggestions([]);
       } else {
-        setSuggestions([{ word: "hello" }, { word: "world" }, { word: "123" }]);
+        // fetch words
+        const words = await fetchWords(query)
+        setSuggestions(words);
       }
     }, 300);
 
@@ -21,12 +29,12 @@ const SearchInput = ({ onSelect }) => {
     };
   }, [query]);
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     setQuery(e.target.value);
   };
 
   const handleSelect = (word) => {
-    setQuery(word);  
+    setQuery(word.kata);
     setSuggestions([]);
     onSelect(word);
     setIsTyping(false);
@@ -56,7 +64,7 @@ const SearchInput = ({ onSelect }) => {
   return (
     <div className="flex flex-col justify-center items-center mt-28 relative w-full">
       <div className="text-color-primary text-7xl m-5">ARKAIS</div>
-        <input
+      <input
         placeholder="cari arkais..."
         className="rounded-lg w-full sm:w-[50%] p-2 focus:outline-none focus:border-transparent bg-color-primary text-color-dark"
         value={query}
@@ -69,11 +77,11 @@ const SearchInput = ({ onSelect }) => {
           {suggestions.map((suggestion, index) => (
             <li
               key={index}
-              onMouseDown={() => handleSelect(suggestion.word)}
+              onMouseDown={() => handleSelect(suggestion)}
               className="p-3 cursor-pointer hover:bg-color-accent border-b last:border-none"
             >
               <span className="font-semibold text-color-dark">
-                {highlightMatch(suggestion.word, query)}
+                {highlightMatch(suggestion.kata, query)}
               </span>
             </li>
           ))}

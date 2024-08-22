@@ -8,9 +8,11 @@ export default function Home() {
   const [selectedWord, setSelectedWord] = useState('');
 
   return (
-    <>
+    <div className="min-h-[52vh]">
       <SearchInput onSelect={setSelectedWord} />
-      <Result/>
-    </>
+      <div className='flex flex-col items-center'>
+        {selectedWord && <Result searchTerm={selectedWord} />}
+      </div>
+    </div>
   );
 }

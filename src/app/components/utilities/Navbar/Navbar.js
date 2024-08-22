@@ -1,15 +1,15 @@
-import UserActionButton from "./UserActionButton"
+import UserActionButton from "./UserActionButton";
+import Link from "next/link";
 
 const Navbar = () => {
-    return(
-        <div className="flex justify-between items-center w-full bg-color-accent">
-            <a className="text-color-dark text-4xl p-4">ArkaisEdu</a>
-            <div className="flex justify-end">
-                <div className="text-color-dark text-xl px-4">Ekstensi</div>
-                <UserActionButton/>
+    return (
+        <header className="bg-color-accent">
+            <div className="flex md:flex-row flex-col justify-between md:items-center p-4 gap-2">
+                <Link href="/" className="font-bold text 2-xl">ArkaisEdu</Link>
+                <UserActionButton />
             </div>
-        </div>
-    )
-}
+        </header>
+    );
+};
 
-export default Navbar
+export default Navbar;

@@ -41,7 +41,10 @@ const SearchInput = ({ onSelect }) => {
   };
 
   const highlightMatch = (word, query) => {
-    const parts = word.split(new RegExp(`(${query})`, 'gi'));
+    const parts = word.split(new RegExp(`(${escapeRegExp(query)})`, 'gi'));
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
     return (
       <>
         {parts.map((part, index) =>
@@ -73,7 +76,7 @@ const SearchInput = ({ onSelect }) => {
         onBlur={handleBlur}
       />
       {isTyping && suggestions.length > 0 && (
-        <ul className="absolute top-full mt-2 z-50 w-full sm:w-[50%] bg-color-primary rounded-lg shadow-lg border border-color-secondary">
+        <ul className="absolute top-full mt-2 z-50 w-full sm:w-[50%] bg-color-primary rounded-lg shadow-lg border border-color-secondary max-h-[11rem] overflow-y-auto">
           {suggestions.map((suggestion, index) => (
             <li
               key={index}

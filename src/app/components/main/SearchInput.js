@@ -18,7 +18,6 @@ const SearchInput = ({ onSelect }) => {
       if (query.trim() === '') {
         setSuggestions([]);
       } else {
-        // fetch words
         const words = await fetchWords(query)
         setSuggestions(words);
       }

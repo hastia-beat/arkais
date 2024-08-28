@@ -11,7 +11,7 @@ export default function Home() {
     <div className="min-h-[52vh]">
       <SearchInput onSelect={setSelectedWord} />
       <div className='flex flex-col items-center'>
-        {selectedWord && <Result searchTerm={selectedWord} />}
+        <Result searchTerm={selectedWord} />
       </div>
     </div>
   );

@@ -20,4 +20,13 @@ model Word {
   jenisKata String
 
   @@map("words")
+
+}
+
+model Collection {
+  id         Int @id @default(autoincrement())
+  word_id    Int
+  user_email String
+
+  @@unique([user_email, word_id])
 }

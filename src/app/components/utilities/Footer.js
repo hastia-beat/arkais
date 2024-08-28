@@ -62,9 +62,9 @@ const Footer = async() => {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/" className="text-gray-300 transition hover:opacity-75">
+                      <div className="text-gray-300 transition hover:opacity-75">
                       <Link href={actionURL} className="">{actionLabel}</Link>
-                      </Link>
+                      </div>
                     </li>
                   </ul>
                 </nav>

@@ -1,10 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { authUserSession } from "@/app/lib/auth-libs";
-import Result from "../../main/Result"
 
 const UserActionButton = async () => {
-  const user = await authUserSession();  // Mendapatkan data user
+  const user = await authUserSession();
   const actionLabel = user ? "sign out" : "sign in";
   const actionURL = user ? "/api/auth/signout" : "/api/auth/signin";
 
@@ -21,7 +20,6 @@ const UserActionButton = async () => {
       >
         {actionLabel}
       </Link>
-      <Result user={user} />
     </div>
   );
 };

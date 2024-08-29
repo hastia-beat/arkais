@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { BookmarksSimple } from '@phosphor-icons/react';
 
 const CollectionButton = ({ word_id, user_email }) => {
+
   const [isCreated, setIsCreated] = useState(false);
 
   const handleCollection = async (event) => {

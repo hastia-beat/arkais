@@ -1,29 +1,12 @@
-// pages/index.js atau pages/home.js
+// src/app/page.js
 
-import React, { useState } from "react";
-import SearchInput from './components/main/SearchInput';
-import Result from './components/main/Result';
 import { authUserSession } from "@/app/lib/auth-libs";
+import ClientComponent from './components/Clientcomponent';
 
-export default function Home({ user }) {
-  const [selectedWord, setSelectedWord] = useState('');
+export default async function Home() {
+  const user = await authUserSession();  // Mengambil data user dari server-side
 
   return (
-    <div className="min-h-[52vh]">
-      <SearchInput onSelect={setSelectedWord} />
-      <div className='flex flex-col items-center'>
-        <Result searchTerm={selectedWord} user={user} />
-      </div>
-    </div>
+    <ClientComponent user={user} />
   );
-}
-
-export async function getServerSideProps(context) {
-  const user = await authUserSession();
-
-  return {
-    props: {
-      user: user || null,
-    },
-  };
 }

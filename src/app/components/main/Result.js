@@ -1,3 +1,6 @@
+// src/app/components/main/Result.js
+'use client';
+
 import React from "react";
 import CollectionButton from "../collectionButton";
 

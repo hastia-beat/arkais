@@ -2,11 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-// fetch data from API
-const fetchWords = async (query) => {
-  const response = await fetch(`http://localhost:3333/words?search=${query}`);
-  return await response.json();
-}
+import WordUsecase from '../../usecases/word';
 
 const SearchInput = ({ onSelect }) => {
   const [query, setQuery] = useState('');
@@ -18,7 +14,8 @@ const SearchInput = ({ onSelect }) => {
       if (query.trim() === '') {
         setSuggestions([]);
       } else {
-        const words = await fetchWords(query)
+        const wordUsecase = new WordUsecase();
+        const words = await wordUsecase.fetchWords(query)
         setSuggestions(words);
       }
     }, 300);

@@ -5,6 +5,10 @@ import React from "react";
 import CollectionButton from "../collectionButton";
 
 const Result = ({ searchTerm, user }) => {
+  console.log(searchTerm.id);
+  console.log(user);
+
+
   return (
     <div className="flex flex-col items-center mt-8 w-full sm:w-[50%] p-4 bg-color-primary rounded-lg shadow-lg border border-color-secondary">
       <div className="flex items-center justify-between mb-4">

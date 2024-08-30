@@ -5,10 +5,7 @@ import React from "react";
 import CollectionButton from "../collectionButton";
 
 const Result = ({ searchTerm, user }) => {
-  console.log(searchTerm.id);
-  console.log(user);
-
-
+  if (!searchTerm) return null;
   return (
     <div className="flex flex-col items-center mt-8 w-full sm:w-[50%] p-4 bg-color-primary rounded-lg shadow-lg border border-color-secondary">
       <div className="flex items-center justify-between mb-4">
@@ -24,9 +21,9 @@ const Result = ({ searchTerm, user }) => {
               {searchTerm?.jenisKata || "jenis kata"}
             </div>
           </div>
-          {user && <CollectionButton word_id={searchTerm?.id} user_email={user?.email}/>}
+          {user && searchTerm && searchTerm.id ? <CollectionButton wordId={searchTerm.id} email={user.email} /> : null}
         </div>
-      </div>  
+      </div>
     </div>
   );
 };

@@ -2,30 +2,32 @@
 
 import React, { useState } from "react";
 import { BookmarksSimple } from '@phosphor-icons/react';
+import CollectionUsecase from "../usecases/collection";
 
-const CollectionButton = ({ word_id, user_email }) => {
-  console.log(word_id, user_email)
-
+const CollectionButton = ({ wordId, email }) => {
   const [isCreated, setIsCreated] = useState(false)
 
   const handleCollection = async (event) => {
-    event.preventDefault()
+    try {
+      event.preventDefault()
 
-    const data = { word_id, user_email };
+      const data = { wordId, email };
+      console.log(data);
 
-    const response = await fetch("api/v1/collection", {
-      method: "POST",
-      body: JSON.stringify(data)
-    })
-    const collection = await response.json()
-    if (collection.isCreated) {
-      setIsCreated(true);
+      const collectionUsecase = new CollectionUsecase();
+      const collection = await collectionUsecase.createCollection(data);
+      if (collection?.id) {
+        setIsCreated(true);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
   return (
     <>
       {isCreated && <p>Added to collection</p>}
+
       <button onClick={handleCollection}>
         <BookmarksSimple size={28} />
       </button>

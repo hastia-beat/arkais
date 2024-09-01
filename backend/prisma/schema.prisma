@@ -14,18 +14,20 @@ datasource db {
 }
 
 model Word {
-  id        Int    @id @default(autoincrement())
-  kata      String
-  makna     String
-  jenisKata String
+  id          Int          @id @default(autoincrement())
+  kata        String
+  makna       String
+  jenisKata   String
+  collections Collection[] // Relasi ke Collection
 
   @@map("words")
 }
 
-model Collection {
-  id     Int    @id @default(autoincrement())
-  wordId Int
-  email  String
+model Collection { // Mengganti nama model menjadi singular sesuai konvensi
+  id      Int     @id @default(autoincrement())
+  wordId  Int
+  email   String
+  word    Word    @relation(fields: [wordId], references: [id]) // Relasi ke Word
 
   @@unique([wordId, email])
   @@map("collections")

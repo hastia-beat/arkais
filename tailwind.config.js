@@ -15,10 +15,14 @@ module.exports = {
     },
     colors: {
       color: {
-        primary: '#eeeeee',
-        accent: '#ffc639',
-        secondary: '#393e46',
-        dark: '#241e1f'
+        primary: '#eeeeee',   // Abu-abu terang
+        accent: '#ffc639',    // Kuning oranye
+        secondary: '#393e46', // Abu-abu gelap
+        dark: '#241e1f',      // Hitam gelap
+        success: '#4caf50',   // Hijau terang
+        danger: '#e53935',    // Merah muda gelap
+        info: '#1e88e5',      // Biru terang
+        warning: '#ffa726'    // Kuning
       }
     }
   },

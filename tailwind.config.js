@@ -21,6 +21,7 @@ module.exports = {
         dark: '#241e1f',      // Hitam gelap
         success: '#4caf50',   // Hijau terang
         danger: '#e53935',    // Merah muda gelap
+        red: '#960019',       // Merah gelap
         info: '#1e88e5',      // Biru terang
         warning: '#ffa726'    // Kuning
       }

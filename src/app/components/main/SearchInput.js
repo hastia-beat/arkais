@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
 import WordUsecase from '../../usecases/word';
 
 const SearchInput = ({ onSelect }) => {
@@ -15,8 +14,22 @@ const SearchInput = ({ onSelect }) => {
         setSuggestions([]);
       } else {
         const wordUsecase = new WordUsecase();
-        const words = await wordUsecase.fetchWords(query)
-        setSuggestions(words);
+        const words = await wordUsecase.fetchWords(query);
+        
+        // Sort the words based on how closely they match the query
+        const sortedWords = words.sort((a, b) => {
+          const indexA = a.kata.toLowerCase().indexOf(query.toLowerCase());
+          const indexB = b.kata.toLowerCase().indexOf(query.toLowerCase());
+
+          // Prioritize words where the query is found
+          if (indexA === -1) return 1;
+          if (indexB === -1) return -1;
+
+          // If both have the query, sort by the position of the query in the word
+          return indexA - indexB;
+        });
+
+        setSuggestions(sortedWords);
       }
     }, 300);
 

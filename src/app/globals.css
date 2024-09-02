@@ -1,3 +1,17 @@
+/* File: /app/globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Menambahkan kelas utilitas untuk menyembunyikan scrollbar */
+@layer utilities {
+  .scrollbar-hidden {
+    -ms-overflow-style: none;  /* IE 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;  /* Safari dan Chrome */
+  }
+}

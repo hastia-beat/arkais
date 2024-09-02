@@ -1,17 +1,24 @@
 import express, { Express, Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import dotenv from "dotenv";
 import cors from "cors";
 
 dotenv.config();
+
+("use strict");
+
+// header accepted
+const ADDITIONAL_HEADERS = {
+  X_USER_EMAIL: "x-user-email",
+};
 
 const app: Express = express();
 const port: number = process.env.PORT ? parseInt(process.env.PORT) : 3333;
 
 const prisma = new PrismaClient();
 
-// Connect to the database
-prisma.$connect()
+prisma
+  .$connect()
   .then(() => {
     console.log("Connected to the database");
   })
@@ -21,7 +28,7 @@ prisma.$connect()
   });
 
 // Handle Prisma disconnection when server stops
-process.on('SIGINT', async () => {
+process.on("SIGINT", async () => {
   await prisma.$disconnect();
   process.exit();
 });
@@ -33,8 +40,7 @@ app.use(express.json());
 // Endpoint to get words with optional query parameter
 app.get("/words", async (req: Request, res: Response) => {
   try {
-    const kata = req.query.kata ? req.query.kata.toString() : "";
-    
+    const kata = req.query.search ? req.query.search.toString() : "";
     const words = await prisma.word.findMany({
       where: {
         kata: { contains: kata },
@@ -81,9 +87,6 @@ app.get("/collections", async (req: Request, res: Response) => {
         word: true, // Include related word data
       },
     });
-
-    console.log('Collections fetched:', collections);
-
     res.status(200).json(collections);
   } catch (error) {
     console.error("Error fetching collections:", error);
@@ -93,34 +96,36 @@ app.get("/collections", async (req: Request, res: Response) => {
 
 app.delete("/collections/:id", async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-
+    const id = req.params.id ? parseInt(req.params.id) : 0;
     if (!id) {
-      return res.status(400).json({ error: "Collection ID is required" });
+      return res.status(400).json({ error: "id is required" });
     }
 
-    // Check if the collection exists before attempting to delete
-    const existingCollection = await prisma.collection.findUnique({
-      where: { id: parseInt(id) },
-    });
-
-    if (!existingCollection) {
-      return res.status(404).json({ error: "Collection not found" });
+    // check email
+    const email = req.headers[ADDITIONAL_HEADERS.X_USER_EMAIL]
+      ? req.headers[ADDITIONAL_HEADERS.X_USER_EMAIL]?.toString()
+      : "";
+    if (!email) {
+      return res.status(401).json({ error: "Unauthorized" });
     }
-
+    // hard delete
     await prisma.collection.delete({
       where: {
-        id: parseInt(id),
+        id: id,
+        email: email.toString(),
       },
     });
-
-    res.status(200).json({ message: "Collection deleted successfully" });
+    res.status(204).json();
   } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      error.code === "P2025";
+      res.status(404).json({ error: "collection not found" });
+      return;
+    }
     console.error("Error deleting collection:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
 
 // Start the server
 app.listen(port, () => {

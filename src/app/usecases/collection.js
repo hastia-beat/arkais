@@ -39,6 +39,22 @@ class CollectionUsecase {
             throw new Error('Respons dari server tidak dalam format JSON');
         }
     }
+
+    async deleteCollection(email, wordId) {
+        console.log('Deleting collection:', wordId);
+        const response = await fetch(`${process.env["BACKEND"] || "http://localhost:3333"}/collections/${wordId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-USER-EMAIL': email
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Gagal menghapus koleksi');
+        }
+        return response
+    }
 }
 
 export default CollectionUsecase;

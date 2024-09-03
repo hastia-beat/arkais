@@ -51,6 +51,18 @@ app.get("/words", async (req: Request, res: Response) => {
   }
 });
 
+app.get("/words/random", async (req: Request, res: Response) => {
+  try {
+    const limit = req.query.limit ? parseInt(req.query.limit.toString()) : 5;
+    const words =
+      await prisma.$queryRaw`SELECT * FROM words ORDER BY RAND() LIMIT ${limit}`;
+    res.status(200).json(words);
+  } catch (error) {
+    console.error("Error fetching words:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.post("/collections", async (req: Request, res: Response) => {
   try {
     const { wordId, email } = req.body;

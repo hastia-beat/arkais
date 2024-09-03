@@ -17,7 +17,7 @@ const CollectionButton = ({ wordId, email }) => {
 
       if (result.error) {
         setError(result.error); 
-        if (result.error === "Kata sudah Ada di dalam koleksi") {
+        if (result.error === "tidak dapat menambahkan kata ke koleksi") {
           setIsCreated(false); // Hide the "Dimasukkan ke koleksi" message
         }
       } else {
@@ -31,13 +31,13 @@ const CollectionButton = ({ wordId, email }) => {
   };
 
   return (
-    <>
-      {isCreated && !error && <p>Dimasukkan ke koleksi</p>}
-      {error && <p>{error}</p>} {/* Display error message */}
-      <button onClick={handleCollection}>
+    <div className="flex justify-end">
+      {isCreated && !error && <p className="mr-2">Dimasukkan ke koleksi</p>}
+      {error && <p className="text-red-500">{error}</p>} {/* Display error message */}
+      <button onClick={handleCollection} className="ml-auto px-3">
         <BookmarksSimple size={28} />
       </button>
-    </>
+    </div>
   );
 };
 

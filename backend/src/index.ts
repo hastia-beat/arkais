@@ -24,10 +24,9 @@ prisma
   })
   .catch((e) => {
     console.error("Failed to connect to the database:", e);
-    process.exit(1); // Exit if unable to connect to the database
+    process.exit(1);
   });
 
-// Handle Prisma disconnection when server stops
 process.on("SIGINT", async () => {
   await prisma.$disconnect();
   process.exit();
@@ -37,7 +36,6 @@ process.on("SIGINT", async () => {
 app.use(cors());
 app.use(express.json());
 
-// Endpoint to get words with optional query parameter
 app.get("/words", async (req: Request, res: Response) => {
   try {
     const kata = req.query.search ? req.query.search.toString() : "";
@@ -53,7 +51,6 @@ app.get("/words", async (req: Request, res: Response) => {
   }
 });
 
-// Endpoint to create a collection
 app.post("/collections", async (req: Request, res: Response) => {
   try {
     const { wordId, email } = req.body;
@@ -75,7 +72,6 @@ app.post("/collections", async (req: Request, res: Response) => {
   }
 });
 
-// Endpoint to get collections with optional query parameter
 app.get("/collections", async (req: Request, res: Response) => {
   try {
     const email = req.query.email ? req.query.email.toString() : "";

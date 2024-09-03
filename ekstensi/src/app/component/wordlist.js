@@ -2,21 +2,25 @@
 
 import { useEffect, useState } from 'react';
 
+// fetch data from API
+async function fetchWords(limit) {
+  const response = await fetch(`${process.env["BACKEND"] || "http://localhost:3333"}/words/random?limit=${limit}`);
+  return await response.json();
+}
+
 function WordList() {
   const [words, setWords] = useState([]);
 
   useEffect(() => {
-    async function fetchWords() {
+    async function fetchWordsEffect() {
       try {
-        const response = await fetch('/api/words');
-        const data = await response.json();
+        const data = await fetchWords(5);
         setWords(data);
       } catch (error) {
         console.error('Error fetching words:', error);
       }
     }
-
-    fetchWords();
+    fetchWordsEffect();
   }, []);
 
   return (

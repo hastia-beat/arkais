@@ -9,7 +9,7 @@ export default function ClientComponent({ user }) {
 
   return (
     <div className="min-h-[52vh]">
-      <SearchInput onSelect={setSelectedWord} />
+      <SearchInput onSelect={setSelectedWord} />  
       <div className='flex flex-col items-center'>
         <Result searchTerm={selectedWord} user={user} />
       </div>

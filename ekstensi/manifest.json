@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Custom New Tab Functions",
+  "version": "1.0",
+  "description": "Ekstensi Chrome untuk menambahkan fungsionalitas kustom ke tab baru tanpa mengubah isinya.",
+  "permissions": ["scripting", "activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "public/icon_arkais_16.png",
+    "48": "public/icon_arkais_48.png",
+    "128": "public/icon_arkais_128.png"
+  }
+}

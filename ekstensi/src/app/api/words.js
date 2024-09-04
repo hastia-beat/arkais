@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       const words = await prisma.word.findMany({
-        take: 5,
+        take: 6,
         select: {
           kata: true,
           makna: true,

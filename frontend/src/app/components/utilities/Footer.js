@@ -1,15 +1,16 @@
-import React from 'react'
-import Link from 'next/link'
-import { authUserSession } from "@/app/lib/auth-libs"
+import React from 'react';
+import Link from 'next/link';
+import { authUserSession } from "@/app/lib/auth-libs";
 
-const Footer = async() => {
+const Footer = async () => {
   const user = await authUserSession();
   const actionLabel = user ? "sign out" : "sign in";
   const actionURL = user ? "/api/auth/signout" : "/api/auth/signin";
+  const bookmarkURL = user ? "/users/collection" : "/pages/disclaimerLogin";
 
   return (
-    <footer className='bg-color-accent mt-14'>
-      <section aria-label="Site Footer" className=" bg-gray-900 text-white">
+    <footer className="bg-color-accent mt-14">
+      <section aria-label="Site Footer" className="bg-gray-900 text-white">
         <div className="max-w-screen-xl px-4 py-16 mx-auto space-y-8 sm:px-6 lg:space-y-16 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div>
@@ -57,24 +58,24 @@ const Footer = async() => {
                 <nav aria-label="Footer Navigation - Services" className="mt-6">
                   <ul className="space-y-4 text-sm">
                     <li>
-                      <Link href="/asseteer" className="text-gray-300 transition hover:opacity-75">
+                      <Link href={bookmarkURL} className="text-gray-300 transition hover:opacity-75">
                         Bookmark
                       </Link>
                     </li>
                     <li>
                       <div className="text-gray-300 transition hover:opacity-75">
-                      <Link href={actionURL} className="">{actionLabel}</Link>
+                        <Link href={actionURL} className="">{actionLabel}</Link>
                       </div>
                     </li>
                   </ul>
                 </nav>
               </div>
               <div>
-                <p className="font-medium ">Company</p>
+                <p className="font-medium">Company</p>
                 <nav aria-label="Footer Navigation - Company" className="mt-6">
                   <ul className="space-y-4 text-sm">
                     <li>
-                      <Link href="/about" className="text-gray-300 transition hover:opacity-75">
+                      <Link href="/pages/about" className="text-gray-300 transition hover:opacity-75">
                         About
                       </Link>
                     </li>
@@ -82,39 +83,24 @@ const Footer = async() => {
                 </nav>
               </div>
               <div>
-                <p className="font-medium ">Helpful Links</p>
-                <nav aria-label="Footer Navigation - Company" className="mt-6">
+                <p className="font-medium">Helpful Links</p>
+                <nav aria-label="Footer Navigation - Helpful Links" className="mt-6">
                   <ul className="space-y-4 text-sm">
                     <li>
-                      <Link href="/contact" className="text-gray-300 transition hover:opacity-75">
+                      <Link href="/pages/contact" className="text-gray-300 transition hover:opacity-75">
                         Contact
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/blog" className="text-gray-300 transition hover:opacity-75">
-                        Blog
                       </Link>
                     </li>
                   </ul>
                 </nav>
               </div>
               <div>
-                <p className="font-medium ">Legal</p>
-                <nav aria-label="Footer Navigation - Legal" className="mt-6">
+                <p className="font-medium">FAQ</p>
+                <nav aria-label="Footer Navigation - FAQ" className="mt-6">
                   <ul className="space-y-4 text-sm">
                     <li>
-                      <Link href="/disclaimer" className="text-gray-300 transition hover:opacity-75">
-                        Disclaimer
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/privacy-policy" className="text-gray-300 transition hover:opacity-75">
-                        Privacy Policy
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/terms" className="text-gray-300 transition hover:opacity-75">
-                        Terms and conditions
+                      <Link href="/pages/arkaisFAQ" className="text-gray-300 transition hover:opacity-75">
+                        Apa itu Arkais?
                       </Link>
                     </li>
                   </ul>
@@ -123,12 +109,12 @@ const Footer = async() => {
             </div>
           </div>
           <p className="text-xs text-gray-500">
-            i dont know what should i type in here. anyway, good luck for your day.
+            I don't know what should I type in here. Anyway, good luck with your day.
           </p>
         </div>
       </section>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

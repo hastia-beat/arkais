@@ -1,15 +1,17 @@
 {
-  "manifest_version": 3,
-  "name": "Custom New Tab Functions",
+  "name": "Custom New Tab Extension",
   "version": "1.0",
-  "description": "Ekstensi Chrome untuk menambahkan fungsionalitas kustom ke tab baru tanpa mengubah isinya.",
-  "permissions": ["scripting", "activeTab"],
-  "background": {
-    "service_worker": "background.js"
+  "manifest_version": 3,
+  "chrome_url_overrides": {
+    "newtab": "out/index.html"
   },
+  "permissions": ["tabs"],
   "icons": {
     "16": "public/icon_arkais_16.png",
     "48": "public/icon_arkais_48.png",
     "128": "public/icon_arkais_128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' 'unsafe-inline';"
   }
 }

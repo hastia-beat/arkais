@@ -32,9 +32,16 @@ function WordList() {
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      const threshold = window.innerHeight * 0.84; 
+      const verticalThreshold = window.innerHeight * 0.84; // 84% from the top
+      const horizontalThresholdStart = window.innerWidth * 0.35; // 30% from the left
+      const horizontalThresholdEnd = window.innerWidth * 0.65; // 70% from the left
 
-      if (e.clientY > threshold && !isLocked) {
+      if (
+        e.clientY > verticalThreshold && 
+        e.clientX > horizontalThresholdStart && 
+        e.clientX < horizontalThresholdEnd && 
+        !isLocked
+      ) {
         if (isBoxVisible) {
           gsap.to(contentRef.current, { y: '100%', duration: 0.15 });
         } else {
@@ -45,7 +52,7 @@ function WordList() {
         if (isBoxVisible) {
           setShouldFetchWords(true); 
         }
-      } else if (e.clientY < threshold && isLocked) {
+      } else if ((e.clientY < verticalThreshold || e.clientX < horizontalThresholdStart || e.clientX > horizontalThresholdEnd) && isLocked) {
         setIsLocked(false); 
       }
     };
@@ -55,10 +62,7 @@ function WordList() {
   }, [isBoxVisible, isLocked]);
 
   return (
-    <div className="min-h-screen bg-color-dark flex flex-col items-center justify-end">
-      <h1 className=" bg-single-hatch text-5xl font-extrabold mb-8 px-12 py-4 relative text-clip-hatch clip-text border-4 border-color-gray text-color-dark">
-        A R K A I S
-      </h1>
+    <div className="flex flex-col items-center justify-end">
       <div
         ref={contentRef}
         className="grid grid-cols-3 gap-4 bg-color-secondary w-full max-w-6xl rounded-lg shadow-lg p-6"

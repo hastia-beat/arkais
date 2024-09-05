@@ -15,15 +15,15 @@ module.exports = {
     },
     colors: {
       color: {
-        primary: '#eeeeee',   // Abu-abu terang
-        accent: '#ffc639',    // Kuning oranye
-        secondary: '#393e46', // Abu-abu gelap
-        dark: '#241e1f',      // Hitam gelap
+        primary: '#f0f0f0',   // Abu-abu terang untuk teks sekunder
+        accent: '#f4c542',    // Kuning emas lembut
+        secondary: '#2f2f3e', // Abu-abu kebiruan gelap (untuk elemen sekunder seperti kartu)
+        dark: '#1a1a2e',      // Navy gelap untuk latar utama
         success: '#4caf50',   // Hijau terang
-        danger: '#e53935',    // Merah muda gelap
-        red: '#960019',       // Merah gelap
+        danger: '#e53935',    // Merah gelap
+        red: '#960019',       // Merah sangat gelap
         info: '#1e88e5',      // Biru terang
-        warning: '#ffa726'    // Kuning
+        warning: '#ffa726'    // Kuning untuk peringatan
       }
     }
   },

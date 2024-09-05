@@ -3,6 +3,12 @@
 import { useState, useEffect } from 'react';
 import WordUsecase from '../../usecases/word';
 
+import { Caveat_Brush } from 'next/font/google';
+const caveatBrush = Caveat_Brush({
+  subsets: ['latin'],
+  weight: '400',
+});
+
 const SearchInput = ({ onSelect }) => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -75,7 +81,7 @@ const SearchInput = ({ onSelect }) => {
 
   return (
     <div className="flex flex-col justify-center items-center mt-28 relative w-full">
-      <div className="text-color-primary text-7xl m-5">ARKAIS</div>
+      <div className={`text-color-primary text-7xl m-5 ${caveatBrush.className}`}>ARKAIS EDU</div>
       <input
         placeholder="cari arkais..."
         className="rounded-lg w-full sm:w-[50%] p-2 focus:outline-none focus:border-transparent bg-color-primary text-color-dark"

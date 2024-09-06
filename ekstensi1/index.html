@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arkais Edu</title>
+  
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="output.css" rel="stylesheet">
+  
+  <!-- Google Fonts for Caveat Brush and Gabarito -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Gabarito&display=swap">
+
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+
+</head>
+<body class="bg-color-dark">
+  <!-- Arkais Edu Section -->
+  <div id="arkais-edu" class="h-screen flex flex-col justify-center items-center relative overflow-hidden">
+    
+    <!-- Logo and Link (simulated) -->
+    <div class="absolute top-4 left-4 m-4 p-2 rounded-full border-4 border-color-primary shadow-lg transition-transform duration-300 hover:scale-110 hover:shadow-2xl">
+      <a href="/" class="block">
+        <div class="relative w-20 h-20 rounded-full overflow-hidden bg-white">
+          <img src="./public/ArkaisEdu.png" alt="Arkais Edu Icon" class="w-full h-full object-cover">
+        </div>
+      </a>
+    </div>
+
+    <!-- Main Title -->
+    <h1 class="text-8xl relative text-color-primary drop-shadow-lg" style="top: -15%;">ARKAIS EDU</h1>
+
+    <!-- Search Input -->
+    <div class="absolute w-full flex justify-center" style="top: 40%;">
+      <div class="flex items-center justify-center w-full mt-10">
+        <div class="relative w-full max-w-2xl">
+          <input id="searchInput" type="text" placeholder="Telusuri di Google atau ketik URL" class="w-full py-2 pl-10 pr-4 text-base border rounded-full shadow-md focus:outline-none focus:border-blue-400 focus:shadow-lg transition duration-200 ease-in-out font-sans">
+        </div>
+      </div>
+    </div>
+
+    <!-- Cursor Movement Text -->
+    <div class="absolute text-center w-1/5" style="top: 62%;">
+      <p class="text-3xl text-color-primary hover:text-color-accent hover:opacity-80 transition-colors duration-300">move your cursor here!</p>
+      <div class="flex justify-center items-center space-x-2">
+        <span class="text-6xl text-color-primary transform font-bold">↓</span>
+        <span class="text-6xl text-color-primary transform font-bold">↓</span>
+        <span class="text-6xl text-color-primary transform font-bold">↓</span>
+      </div>
+    </div>
+
+    <!-- Bottom Circle Decoration -->
+    <div class="w-2/5 h-2/5 rounded-[50%_/_50%] border-4 border-color-primary bg-transparent absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 shadow-xl"></div>
+
+    <!-- Go to Website Button -->
+    <div class="absolute bottom-10 right-20 hover:opacity-80">
+      <a href="#" class="group text-color-primary text-3xl relative pb-1 hover:text-color-accent transition-all duration-300">
+        go to website
+        <span class="block w-40 h-[4px] bg-color-primary absolute left-1/2 transform -translate-x-1/2 bottom-[-4px] group-hover:bg-color-accent transition-all"></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Word List Section -->
+  <div id="wordList" class="flex flex-col items-center justify-end">
+    <div class="grid grid-cols-3 gap-4 bg-color-secondary w-full max-w-6xl rounded-lg shadow-lg p-6" style="position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(100%);">
+      <!-- Dynamic Word List will be inserted here -->
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

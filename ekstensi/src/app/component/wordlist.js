@@ -69,7 +69,7 @@ function WordList() {
         style={{ position: 'fixed', bottom: '0', left: '50%', transform: 'translateX(-50%) translateY(100%)' }}
       >
         {words.map((word, index) => (
-          <div key={index} className="text-xl font-semibold text-color-primary m-4 px-6">
+          <div key={index} className="text-lg font-semibold text-color-primary m-4 px-6">
             <p className='text-lg font-bold text-color-accent'>{word.kata}</p>
             <p className="text-color-primary">{word.makna}</p>
             <p className="text-sm text-color-accent">{word.jenisKata}</p>

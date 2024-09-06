@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Caveat Brush', cursive;
+}
+
+#wordList {
+  font-family: 'Gabarito', sans-serif;
+}
+
+.text-color-primary {
+  color: #f0f0f0;
+}
+
+.text-color-accent {
+  color: #f4c542;
+}
+
+.bg-color-dark {
+  background-color: #1a1a2e;
+}
+
+.bg-color-secondary {
+  background-color: #2f2f3e;
+}

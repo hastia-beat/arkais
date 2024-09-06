@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Custom Homepage",
+    "version": "1.0",
+    "description": "Mengganti beranda Chrome dengan halaman khusus.",
+    "author": "Nama Anda",
+    "chrome_url_overrides": {
+      "newtab": "index.html"
+    },
+
+    "icons": {
+      "16": "public/icon_arkais_16.png",
+      "48": "public/icon_arkais_48.png",
+      "128": "public/icon_arkais_128.png"
+    }
+  }
+  

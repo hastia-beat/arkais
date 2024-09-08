@@ -3,7 +3,10 @@ class WordUsecase {
 
     // fetch data from API
     async fetchWords(query) {
-        const response = await fetch(`${process.env["BACKEND"] || "http://localhost:3333"}/words?search=${query}`);
+        const response = await fetch(`${process.env.BACKEND || "https://arkaisedu.vercel.app"}/words?search=${query}`);
+        if (!response.ok) {
+            throw new Error(`Gagal mengambil kata-kata: ${response.statusText}`);
+        }
         return await response.json();
     }
 }

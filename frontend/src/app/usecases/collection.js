@@ -7,7 +7,7 @@ class CollectionUsecase {
             wordId: data.wordId,
         };
 
-        const response = await fetch(`${process.env["BACKEND"] || "http://localhost:3333"}/collections`, {
+        const response = await fetch(`${process.env.BACKEND || "https://arkaisedu.vercel.app"}/collections`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ class CollectionUsecase {
     }
 
     async fetchCollection(email, page = 1, limit = 10) {
-        const response = await fetch(`${process.env["BACKEND"] || "http://localhost:3333"}/collections?email=${email}&page=${page}&limit=${limit}`);
+        const response = await fetch(`${process.env.BACKEND || "https://arkaisedu.vercel.app"}/collections?email=${email}&page=${page}&limit=${limit}`);
 
         if (!response.ok) {
             throw new Error(`Gagal mengambil koleksi: ${response.statusText}`);
@@ -42,7 +42,7 @@ class CollectionUsecase {
 
     async deleteCollection(email, wordId) {
         console.log('Deleting collection:', wordId);
-        const response = await fetch(`${process.env["BACKEND"] || "http://localhost:3333"}/collections/${wordId}`, {
+        const response = await fetch(`${process.env.BACKEND || "https://arkaisedu.vercel.app"}/collections/${wordId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ class CollectionUsecase {
         if (!response.ok) {
             throw new Error('Gagal menghapus koleksi');
         }
-        return response
+        return response;
     }
 }
 

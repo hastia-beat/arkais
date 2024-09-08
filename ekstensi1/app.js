@@ -8,7 +8,7 @@ document.getElementById('searchInput').addEventListener('keydown', function(even
 
 // Fetch words from backend
 async function fetchWords(limit = 6) {
-  const response = await fetch('http://localhost:3333/words/random?limit=' + limit); // Sesuaikan dengan URL API backend kamu
+  const response = await fetch(`https://arkaisedu.vercel.app/words/random?limit=${limit}`); // Updated API URL
   if (!response.ok) {
     console.error('Error fetching words:', response.statusText);
     return [];

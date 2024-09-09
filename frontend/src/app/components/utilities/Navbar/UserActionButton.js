@@ -8,9 +8,16 @@ const UserActionButton = async () => {
   const actionURL = user ? "/api/auth/signout" : "/api/auth/signin";
 
   return (
-    <div className="flex justify-between gap-2">
+    <div className="flex justify-between gap-3">
+      <Link
+        href="https://chromewebstore.google.com/detail/aoegcgghcghdccfmommhfpipmcfpadpb?hl=id"
+        className="py-1 px-1 hover:text-opacity-75"
+        target="_blank"
+      >
+        Extension
+      </Link>
       {user ? (
-        <Link href="/users/collection" className="py-1 hover:text-opacity-75">
+        <Link href="/users/collection" className="py-1 px-1 hover:text-opacity-75">
           Collection
         </Link>
       ) : null}
